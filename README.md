@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Support for Children with ASD</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial;
+  background: #f5f7f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  text-align:center;
+  padding:20px;
+  background:#4CAF50;
+  color:white;
+  font-size:22px;
+  width:100%;
+}
+
+.hero {
+  text-align:center;
+  padding:70px 20px;
+  width:100%;
+}
+
+.hero h1 {font-size:34px;}
+
+.cta {
+  margin-top:20px;
+  padding:15px 25px;
+  background:#4CAF50;
+  color:white;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:30px;
+  width:100%;
+}
+
+.card {
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.section {
+  padding:50px 20px;
+  width:100%;
+  font-size:22px;
+  line-height:1.6;
+}
+
+.section h2 {font-size:30px;}
+
+.hidden {display:none;}
+
+button {
+  padding:12px 18px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#4CAF50;
+  color:white;
+  cursor:pointer;
+  margin:5px;
+}
+
+footer {
+  background:#4CAF50;
+  color:white;
+  text-align:center;
+  padding:50px;
+  font-size:22px;
+  width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<header>🤝 Support for Children with ASD</header>
+
+<section class="hero">
+<h1>A clear roadmap for parents</h1>
+<div class="cta" onclick="startTest()">Take the test</div>
+</section>
+
+<section class="cards">
+<div class="card" onclick="startTest()">🔍 Test</div>
+<div class="card" onclick="showTimeline()">🌱 After diagnosis</div>
+<div class="card" onclick="showBuilder()">🏠 Daily routine</div>
+<div class="card" onclick="showMethods()">🧠 Methods</div>
+<div class="card" onclick="showSOS()">🚨 SOS</div>
+</section>
+
+<section id="test" class="section hidden"></section>
+
+<section id="timeline" class="section hidden">
+<h2>What to do after diagnosis</h2>
+
+<p><b>1. Acceptance and a new perspective</b><br>
+Your child is not “broken” or sick in the usual sense. Their brain works differently. Acceptance is not giving up — it is the decision to learn the “manual” for your specific child to help them adapt.</p>
+
+<p><b>2. Comprehensive assessment</b><br>
+To create a clear plan, you need a solid foundation. Get evaluations from a team of specialists: a neurologist, psychiatrist, and speech therapist. This helps rule out related physical issues (for example, hearing problems or vitamin deficiencies).</p>
+
+<p><b>3. Evidence-based therapy</b><br>
+Don’t waste time on “magic pills.” Focus on proven methods:<br>
+ABA therapy — teaching life skills through a reward system.<br>
+Denver Model (ESDM) — development through play for young children.<br>
+Sensory integration — helping manage sensory experiences.</p>
+
+<p><b>4. Parents’ energy is the foundation</b><br>
+ASD therapy is a marathon, not a sprint. If a parent is exhausted, the child’s progress slows down. Allow yourself to rest, attend support groups, and remember: a happy parent is the best therapist.</p>
+
+<p><b>5. Stability and routine</b><br>
+Predictability reduces anxiety. Use visual schedules (PECS cards) so the child understands what comes next. A clear daily rhythm creates a safe space where learning becomes easier.</p>
+
+</section>
+
+<section id="builder" class="section hidden">
+<h2>Daily routine</h2>
+
+<button onclick="addItem('Wake up')">Wake up</button>
+<button onclick="addItem('Breakfast')">Breakfast</button>
+<button onclick="addItem('Activity')">Activity</button>
+<button onclick="addItem('Play')">Play</button>
+<button onclick="addItem('Walk')">Walk</button>
+<button onclick="addItem('Lunch')">Lunch</button>
+<button onclick="addItem('Rest')">Rest</button>
+<button onclick="addItem('Sleep')">Sleep</button>
+
+<p id="result"></p>
+<button onclick="clearSchedule()">Clear</button>
+</section>
+
+<section id="methods" class="section hidden">
+<h2>Methods</h2>
+
+<p><b>Method: Matching game</b><br>
+Goal: develop language understanding and choice.<br>
+1. Use 2 cards<br>
+2. Ask: “Where is the apple?”<br>
+3. Guide by hand<br>
+4. Child chooses independently<br>
+5. Increase difficulty<br>
+<b>Main rule:</b> praise</p>
+
+<p><b>Method: Token system</b><br>
+Goal: teach task completion.<br>
+1. Show the reward (cartoon)<br>
+2. Create 3 slots<br>
+3. Give tokens<br>
+4. Fill them — reward<br>
+<b>Main rule:</b> give tokens quickly at first</p>
+
+<p><b>Method: “First — Then”</b><br>
+Goal: reduce anxiety.<br>
+1. Use cards<br>
+2. “First…, then…”<br>
+3. Show visually<br>
+4. Immediate reward<br>
+<b>Main rule:</b> instant reinforcement</p>
+
+</section>
+
+<section id="sos" class="section hidden">
+<h2>SOS help</h2>
+<p id="sosStep">Press next</p>
+<button onclick="nextSOS()">Next</button>
+<button onclick="resetSOS()">Start over</button>
+</section>
+
+<footer>
+<h2>You are not alone ❤️</h2>
+</footer>
+
+<script>
+function hideAll(){
+  document.querySelectorAll('.section').forEach(el=>el.classList.add('hidden'));
+}
+
+function showTimeline(){hideAll();document.getElementById('timeline').classList.remove('hidden');}
+function showBuilder(){hideAll();document.getElementById('builder').classList.remove('hidden');}
+function showMethods(){hideAll();document.getElementById('methods').classList.remove('hidden');}
+function showSOS(){hideAll();document.getElementById('sos').classList.remove('hidden');resetSOS();}
+
+let questions=[
+"Does the child respond to their name?","Maintains eye contact?","Points to objects?","Plays with other children?",
+"Repeats words?","Responds to emotions?","Enjoys physical contact?",
+"Follows instructions?","Uses gestures?","Plays appropriately?",
+"Looks at faces?","Responds to sounds?","Understands words?",
+"Shares interests?","Imitates actions?"
+];
+
+let current=0,score=0;
+
+function startTest(){
+  current=0;score=0;
+  hideAll();
+  document.getElementById("test").classList.remove("hidden");
+  document.getElementById("test").innerHTML=`
+    <h2 id="question"></h2>
+    <button onclick="answer('yes')">Yes</button>
+    <button onclick="answer('no')">No</button>
+  `;
+  showQuestion();
+}
+
+function showQuestion(){
+  document.getElementById("question").innerText=questions[current];
+}
+
+function answer(val){
+  if(val==="no") score++;
+  current++;
+
+  if(current<questions.length){
+    showQuestion();
+  } else {
+    document.getElementById("test").innerHTML=`
+      <h2>Result: ${score>=5?"Signs of ASD detected":"Unlikely"}</h2>
+      <button onclick="startTest()">Restart</button>
+    `;
+  }
+}
+
+let schedule=[];
+
+function addItem(item){
+  schedule.push(item);
+  document.getElementById("result").innerText=schedule.join(" → ");
+}
+
+function clearSchedule(){
+  schedule=[];
+  document.getElementById("result").innerText="";
+}
+
+let steps=[
+"Remove dangerous objects",
+"Reduce noise and light",
+"Do not shout",
+"Avoid sudden touch",
+"Give space",
+"Speak calmly",
+"Wait",
+"Discuss later"
+];
+
+let i=0;
+
+function nextSOS(){
+  if(i<steps.length){
+    document.getElementById("sosStep").innerText=steps[i];
+    i++;
+  }
+}
+
+function resetSOS(){
+  i=0;
+  document.getElementById("sosStep").innerText="Press next";
+}
+</script>
+
+</body>
+</html>
